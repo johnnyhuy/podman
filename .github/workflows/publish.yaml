@@ -26,5 +26,5 @@ jobs:
 
       - name: Publish
         run: |
-          podman build -f ubuntu/Containerfile -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} .
+          podman build -f Containerfile -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} ubuntu/
           podman push ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }}
