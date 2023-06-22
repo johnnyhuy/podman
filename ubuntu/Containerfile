@@ -1,3 +1,6 @@
+# Derived from the official Podman Containerfile
+# https://github.com/containers/podman/blob/main/contrib/podmanimage/stable/Containerfile
+#
 # ubuntu-jammy/Containerfile
 #
 # Build a Docker container image from the latest
