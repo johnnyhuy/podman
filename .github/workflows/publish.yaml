@@ -1,0 +1,30 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Podman
+        run: |
+          apt-get update
+          apt-get install -y podman
+
+      - name: Login to GHCR
+        uses: redhat-actions/podman-login@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish
+        run: |
+          podman build -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} .
+          podman push ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }}
