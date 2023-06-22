@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -26,5 +26,5 @@ jobs:
 
       - name: Publish
         run: |
-          podman build -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} .
+          podman build -f ubuntu/Containerfile -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} .
           podman push ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }}
