@@ -25,6 +25,4 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish
-        run: |
-          podman build -f Containerfile -t ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }} ubuntu/
-          podman push ghcr.io/${{ github.repository }}/ubuntu:${{ github.sha }}
+        run: make publish
